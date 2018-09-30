@@ -1,4 +1,4 @@
-// Page Setup
+// Page Setup (technically this in jq not js but I will annotate anyways-)
 $(document).ready(function () {
   // hide buttons not needed initially
   $('#guessView').hide();
@@ -7,7 +7,7 @@ $(document).ready(function () {
    // disable the guess and clear button here so that all disabled property handlings are in the same place
   $('#guess-btn').prop('disabled', true);
   $('#clear-btn').prop('disabled', true);
-  // set the disabled property of button element using jq 1.6, once user types anything into the guessInput, the keyup function will enable buttons
+  // set the disabled property of button element, once user types anything into the guessInput, the keyup function will enable buttons
   $('#guessInput').keyup(function () {
     $('#guess-btn').prop('disabled', this.value == '' ? true : false);
     $('#clear-btn').prop('disabled', this.value == '' ? true : false);
@@ -16,6 +16,7 @@ $(document).ready(function () {
 });  
 
 // Global Vars
+// went with JS on the event handlings (lines 22-40) and let jquery handle my disablings/hides/shows. This is my first time using jquery so I kept it super basic...just enough to get a feel for it
 // the reason I used ES5- this was more or less a spike, I didn't even know what ES5 or ES6 were prior to this assignment so I started with ES5- Browser Driven Development made me do it?
 // I suppose I could have put these in designated spots where needed but I preferred to organize them here to protect consistency as I built out each path
 var minInput = document.querySelector('#minInput');
@@ -25,12 +26,12 @@ var guessButton = document.querySelector('#guess-btn');
 var clearButton = document.querySelector('#clear-btn');
 var resetButton = document.querySelector('#reset-btn');
 var challengeButton = document.querySelector('#challenge-btn');
-// had to initially store answer in global var as 0 for scope purposes, down in the generate answer function, I reset it based on min and max values.  This way it's accessible in the generateFeedback function
+// had to initially store answer in global var as 0 for scope, down in the generate answer function I reset it based on min and max values.  This way it's accessible in the generateFeedback function
 var answer = 0;
 
 
 // Event Listeners
-// I saw this approach of setting variables and then adding event listeners onto the variable and it seemed clean so I ran with it.  Again, I liked the consistency of storing them here for workflow support purposes
+// I saw this approach of setting variables and then adding event listeners onto the variable using plain JS and no jquery- it seemed clean so I ran with it.  Again, I liked the consistency of storing them here for workflow support purposes
 // Essentially when a particular button is clicked, a particular method is called as a result
 submitButton.addEventListener('click', validateNumbers);
 guessButton.addEventListener('click', validateGuess);
