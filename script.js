@@ -1,3 +1,4 @@
+// Page Setup
 $(document).ready(function () {
   $('#guessView').hide();
   $('#reset-btn').hide();
@@ -10,6 +11,7 @@ $(document).ready(function () {
   })
 });  
 
+// Global Vars
 var minInput = document.querySelector('#minInput');
 var maxInput = document.querySelector('#maxInput');
 var submitButton = document.querySelector('#submit-btn');
@@ -18,21 +20,23 @@ var clearButton = document.querySelector('#clear-btn');
 var resetButton = document.querySelector('#reset-btn');
 var answer = 0;
 
+
+// Event Listeners
 submitButton.addEventListener('click', validateNumbers);
 guessButton.addEventListener('click', validateGuess);
 clearButton.addEventListener('click', clearGuessInput);
 resetButton.addEventListener('click', resetGame);
 
+
+// Validations
 function validateNumbers() {
   var min = parseInt(minInput.value, 10);
   var max = parseInt(maxInput.value, 10);
 
   if (isNaN(min) || isNaN(max)) {
     alert("Check your min and max values, they need to be whole numbers.");
-    
   } else if (min >= max) {
     alert("The number on the left must be lower than the number on the right.");
-    
   } else {
     toggleViews();
     setRangeParams(min, max);
@@ -48,22 +52,22 @@ function validateGuess() {
   var max = parseInt(maxInput.value, 10);
   
   if (min <= guess && guess <= max) {
-    generateResponse(guess);
+    generateFeedback(guess);
   } else {
     alert("That number is out of range, guess again.");
   }
 }
 
-function generateResponse(guess) {
+
+// Helpers
+function generateFeedback(guess) {
   $('#reset-btn').show();
   if (answer > guess) {
-    provideFeedback(guess);
+    standardFeedback(guess);
     alert("That guess was too low, guess again.");
-   
   } else if (answer < guess) {
-    provideFeedback(guess);
+    standardFeedback(guess);
     alert("That guess was too high, guess again.");
-
   } else {
     document.getElementById('prompt').innerHTML = ''
     document.getElementById('lastGuess').innerHTML = 'BOOM!';
@@ -76,19 +80,15 @@ function generateAnswer(min, max) {
   answer = Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function standardFeedback(guess) {
+  document.getElementById('prompt').innerHTML = 'Your last guess was:'
+  document.getElementById('lastGuess').innerHTML = guess;
+  document.getElementById('instruction').innerHTML = 'CLEAR to guess again, RESET to start a new game.'
+}
+
 function toggleViews() {
   $('#rangeView').hide();
   $('#guessView').show();
-}
-
-function clearGuessInput() {
-  document.getElementById('guessInput').value = ''
-  disableButtons();
-}
-
-function disableButtons() {
-  $('#guess-btn').prop('disabled', true);
-  $('#clear-btn').prop('disabled', true);
 }
 
 function setRangeParams(min,max) {
@@ -101,8 +101,12 @@ function resetGame() {
   location.reload();
 }
 
-function provideFeedback(guess) {
-  document.getElementById('prompt').innerHTML = 'Your last guess was:'
-  document.getElementById('lastGuess').innerHTML = guess;
-  document.getElementById('instruction').innerHTML = 'CLEAR to guess again, RESET to start a new game.'
+function clearGuessInput() {
+  document.getElementById('guessInput').value = ''
+  disableButtons();
+}
+
+function disableButtons() {
+  $('#guess-btn').prop('disabled', true);
+  $('#clear-btn').prop('disabled', true);
 }
