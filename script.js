@@ -12,43 +12,32 @@ $(document).ready(function () {
 
 var minInput = document.querySelector('#minInput');
 var maxInput = document.querySelector('#maxInput');
-var submit = document.querySelector('#submit-btn');
-var guess = document.querySelector('#guess-btn');
-var clear = document.querySelector('#clear-btn');
-var reset = document.querySelector('#reset-btn');
+var submitButton = document.querySelector('#submit-btn');
+var guessButton = document.querySelector('#guess-btn');
+var clearButton = document.querySelector('#clear-btn');
+var resetButton = document.querySelector('#reset-btn');
 var answer = 0;
 
-submit.addEventListener('click', validateNumbers);
-guess.addEventListener('click', validateGuess);
-clear.addEventListener('click', clearField);
-reset.addEventListener('click', resetGame);
-
+submitButton.addEventListener('click', validateNumbers);
+guessButton.addEventListener('click', validateGuess);
+clearButton.addEventListener('click', clearGuessInput);
+resetButton.addEventListener('click', resetGame);
 
 function validateNumbers() {
   var min = parseInt(minInput.value, 10);
   var max = parseInt(maxInput.value, 10);
+
   if (isNaN(min) || isNaN(max)) {
     alert("Check your min and max values, they need to be whole numbers.");
-    return false;
-  }
-  else if (min >= max) {
+    
+  } else if (min >= max) {
     alert("The number on the left must be lower than the number on the right.");
-    return false;
-  }
-  else {
-    toggleView();
+    
+  } else {
+    toggleViews();
     setRangeParams(min, max);
     generateAnswer(min, max);
   }
-}
-
-function toggleView() {
-  $('#rangeView').hide();
-  $('#guessView').show();
-}
-
-function generateAnswer(min, max) {
-  answer = Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function validateGuess() {
@@ -57,25 +46,44 @@ function validateGuess() {
   var guess = parseInt(userGuess.value, 10);
   var min = parseInt(minInput.value, 10);
   var max = parseInt(maxInput.value, 10);
-
+  
   if (min <= guess && guess <= max) {
-    $('#reset').show();
     generateResponse(guess);
-  }
-  else {
+  } else {
     alert("That number is out of range, guess again.");
-    return false;
   }
 }
 
-function generateResponse() {
+function generateResponse(guess) {
+  $('#reset-btn').show();
+  if (answer > guess) {
+    provideFeedback(guess);
+    alert("That guess was too low, guess again.");
+   
+  } else if (answer < guess) {
+    provideFeedback(guess);
+    alert("That guess was too high, guess again.");
+
+  } else {
+    document.getElementById('prompt').innerHTML = ''
+    document.getElementById('lastGuess').innerHTML = 'BOOM!';
+    document.getElementById('instruction').innerHTML = 'You guessed the number! RESET to start a new game.'
+  }
 }
 
-function clearField() {
+function generateAnswer(min, max) {
+  answer = Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function toggleViews() {
+  $('#rangeView').hide();
+  $('#guessView').show();
+}
+
+function clearGuessInput() {
   document.getElementById('guessInput').value = ''
   disableButtons();
 }
-
 
 function disableButtons() {
   $('#guess-btn').prop('disabled', true);
@@ -91,4 +99,10 @@ function setRangeParams(min,max) {
 
 function resetGame() {
   location.reload();
+}
+
+function provideFeedback(guess) {
+  document.getElementById('prompt').innerHTML = 'Your last guess was:'
+  document.getElementById('lastGuess').innerHTML = guess;
+  document.getElementById('instruction').innerHTML = 'CLEAR to guess again, RESET to start a new game.'
 }

@@ -17,9 +17,10 @@
 
   <!-- browser tab title -->
   <title>Number Guesser</title>
+  
 </head>
-
 <body>
+
   <!-- Nav Bar-->
   <nav class="navbar">
     <div class="title">
@@ -41,19 +42,27 @@
 
   <!-- Guess Number in Range -->
   <div id="guessView">
-    <p>Step 2: Start Guessing!</p><br>
+    <p>Step 2: Guess the Number</p><br>
     <input type="number" class="guessInput" id="guessInput" min="" max="" placeholder="">
     <br>
     <input type="button" class="button" id="guess-btn" value="guess">
     <input type="button" class="button" id="clear-btn" value="clear">
   </div>
 
-  <!--Reset Game -->
-  <div class="reset">
+  <!-- Feedback Per Guess -->
+  <div id="gameFeedback">
+    <p id="prompt"></p>
+    <p id="lastGuess"></p><br>
+    <p id="instruction"></p>
+  </div>
+
+  <!-- Reset Game -->
+  <div id="reset">
     <input type="button" class="button" id="reset-btn" value="reset">
   </div>
 
   <!-- link js file -->
   <script src='script.js'></script>
+
 </body>
 </html>

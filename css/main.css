@@ -23,7 +23,7 @@ h1 {
 
 div {
   text-align: center;
-  padding-top: 35px;
+  padding-top: 25px;
 }
 
 p {
@@ -48,7 +48,7 @@ p {
 }
 
 #guessInput {
-   font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   width: 480px;
   height: 40px;
   font-weight: 300;
@@ -74,4 +74,18 @@ p {
 
 .button:disabled {
   background-color: #D0D2D3;
+}
+
+#lastGuess {
+  color: #eb0089;
+  font-size: 200px;
+  font-weight: 300;
+  padding-top: 10px;
+  padding-bottom:10px;
+}
+
+#reset-btn {
+  font-size: 23px;
+  height: 45;
+  width: 520px;
 }
