@@ -1,0 +1,27 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+  background: #404041;
+  height: 140px;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+#pink {
+  color: #ED458B;
+  font-weight: 800;
+}
+
+#white {
+  color: #E6E7E8;
+  font-weight: 300;
+}
+
+div {
+  text-align: center;
+  padding-top: 35px;
+}
