@@ -30,25 +30,28 @@
     </div>
   </nav>
 
-  <!-- Welcome Message-->
-  <div class="title">
-    <p>Welcome to the Number Guessing Game.</p>
-    <br>
-    <p>To start, set a numerical range for yourself (i.e 1 to 10)</p>
-    <br>
-    <p>Click submit once complete.</p>
-  </div>
-
   <!-- Set Range -->
-  <div class="form">
-    <form id="rangeForm">
-      <input type="number" class="range-input" min="" max="" placeholder="min">
-      <input type="number" class="range-input" min="" max="" placeholder="max">
-      <br>
-      <input type="submit" class="button" id="range-btn">
-    </form>
+  <div id="rangeView">
+    <p>Step 1: Set Your Range</p><br>
+    <input type="number" class="rangeInput" id="minInput" placeholder="min">
+    <input type="number" class="rangeInput" id="maxInput" placeholder="max">
+    <br>
+    <input type="button" class= "button" id="submit-btn" value="submit">
   </div>
 
+  <!-- Guess Number in Range -->
+  <div id="guessView">
+    <p>Step 2: Start Guessing!</p><br>
+    <input type="number" class="guessInput" id="guessInput" min="" max="" placeholder="">
+    <br>
+    <input type="button" class="button" id="guess-btn" value="guess">
+    <input type="button" class="button" id="clear-btn" value="clear">
+  </div>
+
+  <!--Reset Game -->
+  <div class="reset">
+    <input type="button" class="button" id="reset-btn" value="reset">
+  </div>
 
   <!-- link js file -->
   <script src='script.js'></script>

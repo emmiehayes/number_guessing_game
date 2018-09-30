@@ -33,7 +33,7 @@ p {
   font-weight: 300;
 }
 
-.range-input {
+.rangeInput {
   font-family: 'Open Sans', sans-serif;
   width: 80px;
   height: 40px;
@@ -42,9 +42,17 @@ p {
   text-align: center;
 }
 
-#range-btn {
+#submit {
   font-size:20px;
   width: 100px;
+}
+
+#guessInput {
+   font-family: 'Open Sans', sans-serif;
+  width: 480px;
+  height: 40px;
+  font-weight: 300;
+  font-size:30px;
 }
 
 .button {
