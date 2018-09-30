@@ -25,3 +25,45 @@ div {
   text-align: center;
   padding-top: 35px;
 }
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  color: #404041;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.range-input {
+  font-family: 'Open Sans', sans-serif;
+  width: 80px;
+  height: 40px;
+  font-weight: 300;
+  font-size:20px;
+  text-align: center;
+}
+
+#range-btn {
+  font-size:20px;
+  width: 100px;
+}
+
+.button {
+  font-family: 'Open Sans', sans-serif;
+  background-color:#929497;
+  font-weight: 300;
+	font-size:30px;
+  color:#ffffff;
+	border-radius:28px;
+	cursor:pointer;
+  width: 235px;
+  height: 50px;
+  margin: 15px;
+}
+
+.button:hover {
+  background-color:#eb0089;
+}
+
+.button:disabled {
+  background-color: #D0D2D3;
+}
