@@ -2,6 +2,7 @@
 $(document).ready(function () {
   $('#guessView').hide();
   $('#reset-btn').hide();
+  $('#challenge-btn').hide();
   $('#guess-btn').prop('disabled', true);
   $('#clear-btn').prop('disabled', true);
   $('#guessInput').keyup(function () {
@@ -18,6 +19,7 @@ var submitButton = document.querySelector('#submit-btn');
 var guessButton = document.querySelector('#guess-btn');
 var clearButton = document.querySelector('#clear-btn');
 var resetButton = document.querySelector('#reset-btn');
+var challengeButton = document.querySelector('#challenge-btn');
 var answer = 0;
 
 
@@ -26,6 +28,7 @@ submitButton.addEventListener('click', validateNumbers);
 guessButton.addEventListener('click', validateGuess);
 clearButton.addEventListener('click', clearGuessInput);
 resetButton.addEventListener('click', resetGame);
+challengeButton.addEventListener('click', increaseDifficulty);
 
 
 // Validations
@@ -58,10 +61,28 @@ function validateGuess() {
   }
 }
 
+// Challenge
+  function increaseDifficulty() {
+    event.preventDefault();
+    var lastMin = parseInt(minInput.value, 10);
+    var lastMax = parseInt(maxInput.value, 10);
+
+    var min = lastMin - 10;
+    var max = lastMax + 10;
+
+    toggleViews();
+    setRangeParams(min, max);
+    generateAnswer(min, max);
+    clearGuessInput();
+    alert("Your new range has increased by 10 in both directions. Good Luck!");
+  }
+
 
 // Helpers
 function generateFeedback(guess) {
   $('#reset-btn').show();
+  $('#gameFeedback').show();
+
   if (answer > guess) {
     standardFeedback(guess);
     alert("That guess was too low, guess again.");
@@ -71,8 +92,9 @@ function generateFeedback(guess) {
   } else {
     document.getElementById('prompt').innerHTML = ''
     document.getElementById('lastGuess').innerHTML = 'BOOM!';
-    document.getElementById('instruction').innerHTML = 'You guessed the number! RESET to start a new game.'
+    document.getElementById('instruction').innerHTML = 'You guessed the number! CHALLENGE to increase difficulty, RESET to start a new game.'
     disableButtons();
+    $('#challenge-btn').show();
   }
 }
 
@@ -88,6 +110,7 @@ function standardFeedback(guess) {
 
 function toggleViews() {
   $('#rangeView').hide();
+  $('#gameFeedback').hide();
   $('#guessView').show();
 }
 
@@ -104,6 +127,8 @@ function resetGame() {
 function clearGuessInput() {
   document.getElementById('guessInput').value = ''
   disableButtons();
+  $('#reset-btn').hide();
+  $('#challenge-btn').hide();
 }
 
 function disableButtons() {
