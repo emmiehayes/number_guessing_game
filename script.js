@@ -68,6 +68,7 @@ function generateResponse(guess) {
     document.getElementById('prompt').innerHTML = ''
     document.getElementById('lastGuess').innerHTML = 'BOOM!';
     document.getElementById('instruction').innerHTML = 'You guessed the number! RESET to start a new game.'
+    disableButtons();
   }
 }
 
@@ -88,7 +89,6 @@ function clearGuessInput() {
 function disableButtons() {
   $('#guess-btn').prop('disabled', true);
   $('#clear-btn').prop('disabled', true);
-  $('#reset-btn').prop('disabled', true);
 }
 
 function setRangeParams(min,max) {
